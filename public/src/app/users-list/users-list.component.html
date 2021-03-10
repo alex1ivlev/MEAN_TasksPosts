@@ -1,0 +1,13 @@
+<div>
+  <div class="row">
+    <div class="col-xs-6">
+      <h3> Users: </h3>
+      <ul>
+        <app-user-item *ngFor="let us of users; let i= index" [user]="us" [index]="i"></app-user-item>
+      </ul>
+    </div>
+    <div class="col-xs-6">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

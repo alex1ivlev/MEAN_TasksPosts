@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="col-sm-5 row">
+    <a [routerLink]="[user._id]"
+       routerLinkActive="active" class="list-group-item clearfix">
+      <div class="col-sm pull-left">
+        <h4 class="list-group-item-heading"> ID: {{ user._id }} </h4>
+        <p class="list-group-item-text"> Name: {{user.name}}  </p>
+        <p class="list-group-item-text"> Email: {{user.email}}  </p>
+
+        <button (mouseover)="showData()" (click)="toggleData()">Other Data</button>
+        <br/>
+        <div *ngIf="isShowed">
+          <p class="list-group-item-text"> Street: {{user.street}}  </p>
+          <p class="list-group-item-text"> City: {{user.city}}  </p>
+          <p class="list-group-item-text"> ZipCode: {{user.zipcode}}  </p>
+        </div>
+        <input class="pull-right" type="button" value="Update">
+        <input class="pull-right" type="button" value="Delete" (click)="delete(user._id)">
+      </div>
+      <br/>
+    </a>
+  </div>
+</div>

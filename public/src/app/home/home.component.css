@@ -1,0 +1,19 @@
+{
+  overflow: scroll;
+}
+
+.border_red
+{
+  border: 1px solid red;
+  margin: 20px;
+  position: center;
+  min-width: 100px;
+}
+
+.border_green
+{
+  border: 1px solid green;
+  margin: 20px;
+  position: relative;
+  min-width: 100px;
+}

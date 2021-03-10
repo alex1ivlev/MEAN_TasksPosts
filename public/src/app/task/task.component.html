@@ -1,0 +1,11 @@
+
+<div>
+    <h3>{{ task.title }}</h3>
+  <p>Is Completed? {{ task.completed }}</p>
+  <div>
+    <button
+            (click)="setToCompletedTask()"
+            [disabled]="task.completed"> {{ task.completed ? "Task Completed" : "Mark Completed" }}
+    </button>
+  </div>
+</div>

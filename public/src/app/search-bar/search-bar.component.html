@@ -1,0 +1,14 @@
+
+Search name: <input type="text" #name>
+Search email: <input type="text" #email>
+<input type="button" value="Search" (click)="search(name.value, email.value)">  &nbsp; <br/>
+
+Search Results:
+
+<table border="1">
+<tr><th>Name</th> <th>Email</th></tr>
+<tr *ngFor="let result of searchResult">
+  <td>{{result.name}}</td>
+  <td>{{result.email}}</td>
+</tr>
+</table>

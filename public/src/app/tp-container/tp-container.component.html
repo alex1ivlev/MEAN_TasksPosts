@@ -1,0 +1,16 @@
+
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" position="end"
+              [opened]="showSideNav$ | async">
+    <a style="float:right"
+       href="#"
+       (click)="closeDetails(); (false)">
+      x Close
+    </a>
+    <router-outlet></router-outlet>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-user-item>
+    </app-user-item>
+  </mat-drawer-content>
+</mat-drawer-container>

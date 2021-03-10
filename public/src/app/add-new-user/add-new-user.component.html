@@ -1,0 +1,9 @@
+<h3> Add new User: </h3>
+
+<form #f="ngForm" (ngSubmit)="save()">
+
+  Name: <input required [(ngModel)]="newuser.name"  type="text" name="name" /> <br/>
+  Email: <input required [(ngModel)]="newuser.email" type="text" name="email" /> <br/>
+
+  <input [disabled]="!f.valid" type="submit" value="Save">
+</form>
