@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes, Router} from "@angular/router";
+import {RouterModule, Routes} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {AppRoutingModule} from './app-routing.module';
@@ -9,7 +9,6 @@ import {HomeComponent} from './home/home.component';
 import {AddNewUserComponent} from './add-new-user/add-new-user.component';
 import {UsersListComponent} from './users-list/users-list.component';
 import {SearchBarComponent} from './search-bar/search-bar.component';
-import {UserDeleteComponent} from './user-delete/user-delete.component';
 import {TasksAndPostsComponent} from './tasks-posts/tasks-posts.component';
 import {UserItemComponent} from "./users-list/user-item/user-item.component";
 import {OtherDataComponent} from "./other-data/other-data.component";
@@ -17,7 +16,6 @@ import {TaskComponent} from './task/task.component';
 import {PostComponent} from './post/post.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import {TpContainerComponent} from './tp-container/tp-container.component';
 
 
 const appRoutes: Routes = [
@@ -48,13 +46,11 @@ const appRoutes: Routes = [
     AddNewUserComponent,
     UsersListComponent,
     SearchBarComponent,
-    UserDeleteComponent,
     TasksAndPostsComponent,
     UserItemComponent,
     OtherDataComponent,
     TaskComponent,
     PostComponent,
-    TpContainerComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../shared/user.service';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import {Router, ActivatedRoute, ParamMap, NavigationEnd} from '@angular/router';
 import { User } from '../shared/user';
-import { Subscription } from 'rxjs';
+import {merge, Observable, of, Subscription} from 'rxjs';
 import { Task } from '../shared/task';
 import { Post } from '../shared/post';
+import {filter, map, switchMap} from "rxjs/operators";
 
 @Component({
   selector: 'app-tasks-posts',
@@ -12,6 +13,7 @@ import { Post } from '../shared/post';
   styleUrls: ['./tasks-posts.component.css'],
 })
 export class TasksAndPostsComponent implements OnInit {
+
   sub1: Subscription | undefined;
   sub2: Subscription | undefined;
   sub3: Subscription | undefined;
@@ -22,9 +24,33 @@ export class TasksAndPostsComponent implements OnInit {
   userTask: Task = new Task( ' ', ' ', "boolean" );
   togglePost: boolean = false;
   userPost: Post = new Post(' ', ' ');
+  showSideNav$: Observable<boolean> | undefined;
 
-  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {}
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {this.onShowSideNav();}
+  public closeDetails() {
+    this.router.navigate(["."], {relativeTo: this.route.parent});
+  }
+  public onShowSideNav() {
+    // check if there's an id in URL
+    const initParams$ =
+      of(this.route.firstChild ?
+        this.route.firstChild.params : null
+      );
+    // still subscribe to router's event
+    const params$ = this.router.events.pipe(
+      filter(e => e instanceof NavigationEnd),
+      switchMap(_ => {
+        return this.route.firstChild ?
+          this.route.firstChild.params : of(false);
+      }),
+      map(params => !!params)
+    );
 
+    // merge 2 Observables together
+    this.showSideNav$ = merge(initParams$, params$).pipe(
+      map(data => !!data)
+    );
+  }
   ngOnInit(): void {
     this.sub1 = this.route.params.subscribe((param) => {
       this.userId = param['id'];
