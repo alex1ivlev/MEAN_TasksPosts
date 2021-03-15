@@ -13,7 +13,6 @@ import {Router, ActivatedRoute} from "@angular/router";
 export class UsersListComponent implements OnInit {
   sub: Subscription | undefined;
   users: User[] = [];
-
   constructor(private userService: UserService, private router: Router, private route: ActivatedRoute) {
   }
 

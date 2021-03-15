@@ -1,5 +1,5 @@
 
-  <mat-drawer-container class="example-container">
+  <mat-drawer-container>
     <mat-drawer mode="side" position="end"
                 [opened]="showSideNav$ | async">
       <a style="float:right"
@@ -11,24 +11,23 @@
       <router-outlet></router-outlet>
     </mat-drawer>
     <mat-drawer-content>
-
-
       <div class="task">
         <div class="col-xs-12 pull-right">
           <h3> Tasks: </h3>
-          <button>Add Task</button>
+          <button class="pull-right btn btn-light">Add Task</button>
           <ul>
             <li *ngFor="let task of user.tasks">
               <app-task [task]="task" (notify)="completeTaskStatus($event)"></app-task></li>
           </ul>
         </div>
       </div>
+    </mat-drawer-content>
 
-
-
+    <mat-drawer-content>
       <div class="post">
         <div class="col-xs-12 pull-right">
           <h3> Posts: </h3>
+          <button class="pull-right btn btn-light">Add Post</button>
           <ul>
             <li *ngFor="let post of user.posts">
               <app-post [post]="post"></app-post> </li>
@@ -38,3 +37,4 @@
       </div>
     </mat-drawer-content>
   </mat-drawer-container>
+

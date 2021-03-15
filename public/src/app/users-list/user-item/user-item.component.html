@@ -1,4 +1,4 @@
-<div class="container">
+<div class="card" [ngClass]="tasksCompleted ? 'borderRed' : 'borderGreen'">
   <div class="col-sm-5 row">
     <a [routerLink]="[user._id]"
        routerLinkActive="active" class="list-group-item clearfix">
@@ -14,7 +14,17 @@
           <p class="list-group-item-text"> City: {{user.city}}  </p>
           <p class="list-group-item-text"> ZipCode: {{user.zipcode}}  </p>
         </div>
+
         <input class="pull-right" type="button" value="Update">
+        <div *ngIf="updateForm">
+
+            Name : <input required  [(ngModel)]="user.name" type="text" name="name" /><br/>
+            Email : <input required  [(ngModel)]="user.email" type="text" name="email"><br/>
+
+            <input type="submit" value="Save">
+
+        </div>
+
         <input class="pull-right" type="button" value="Delete" (click)="delete(user._id)">
       </div>
       <br/>

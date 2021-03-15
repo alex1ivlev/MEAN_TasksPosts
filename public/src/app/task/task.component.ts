@@ -8,16 +8,13 @@ import {Task} from '../shared/task';
 })
 export class TaskComponent implements OnInit {
   @Input() task!: Task;
-  @Output() notify: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() {}
 
   ngOnInit(): void {}
 
   setToCompletedTask() {
-    let _id: any;
-    ({_id} = this.task);
-    this.notify.emit(_id);
-    window.location.reload();
+    this.task.completed = true;
+    //TODO save to db
   }
 }

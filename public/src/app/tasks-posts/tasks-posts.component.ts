@@ -21,7 +21,7 @@ export class TasksAndPostsComponent implements OnInit {
   userId: string = '';
   user: User = new User(' ', ' ', ' ', ' ', ' ', 0);
   toggleTask: boolean = false;
-  userTask: Task = new Task( ' ', ' ', "boolean" );
+  userTask: Task = new Task( ' ', ' ', false );
   togglePost: boolean = false;
   userPost: Post = new Post(' ', ' ');
   showSideNav$: Observable<boolean> | undefined;
@@ -70,15 +70,12 @@ export class TasksAndPostsComponent implements OnInit {
     }
   }
 
-  backToUsers() {
-   this.router.navigate(['/']);
-  }
-
   completeTaskStatus(taskId: string) {
+
+    let selectedTask: any;
     // @ts-ignore
-    const selectedTask = this.user.tasks.find((task) => task._id === taskId);
+    selectedTask = this.user.tasks.find((task) => task._id === taskId);
     if (selectedTask) {
-      // @ts-ignore
       selectedTask.completed = true;
       this.sub3 = this.userService.updateUser(this.userId, this.user)
         .subscribe(data => console.log(data));
