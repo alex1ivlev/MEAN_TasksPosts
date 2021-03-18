@@ -8,6 +8,7 @@ import {Post} from '../shared/post';
 import {filter, map, switchMap} from "rxjs/operators";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {AddNewTaskComponent} from "../add-new-task/add-new-task.component";
+import {AddNewPostComponent} from "../add-new-post/add-new-post.component";
 
 @Component({
   selector: 'app-tasks-posts',
@@ -21,11 +22,10 @@ export class TasksAndPostsComponent implements OnInit {
   sub3: Subscription | undefined;
 
   userId: string = '';
-  user!: User;
+  public user!: User;
   toggleTask: boolean = false;
-  userTask: Task = new Task(' ', ' ', false);
   togglePost: boolean = false;
-  userPost: Post = new Post(' ', ' ');
+  userPost: Post = new Post(' ', ' ', " ");
   showSideNav$: Observable<boolean> | undefined;
 
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, public dialog: MatDialog) {
@@ -93,11 +93,26 @@ export class TasksAndPostsComponent implements OnInit {
   addTask() : void {
     const dialogRef = this.dialog.open(AddNewTaskComponent, {
       width: '400px',
-      id: this.user._id
+      data: {
+        user_id: this.user._id
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.userTask = result;
+      this.user.tasks?.push(result)
+    });
+  }
+
+  addPost() : void {
+    const dialogRef = this.dialog.open(AddNewPostComponent, {
+      width: '400px',
+      data: {
+        user_id: this.user._id
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.user.posts?.push(result)
     });
   }
 }

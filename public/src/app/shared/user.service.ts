@@ -63,6 +63,6 @@ export class UserService {
   }
 
   completeTask(id: string, task_id: string) {
-    return this.http.put("http://localhost:3000/api/users/" + id + "/task", task_id);
+    return this.http.put<Task>("http://localhost:3000/api/users/" + id + "/task/"+ task_id, null);
   }
 }

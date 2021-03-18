@@ -13,15 +13,20 @@ import {User} from "../shared/user";
 export class TaskComponent implements OnInit {
   @Input() task!: Task;
   private sub!: Subscription;
-  private user!: User;
+  @Input() user!: User;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService, private router: Router) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   setToCompletedTask() {
-    this.sub = this.userService.completeTask(this.user._id, this.task._id)
-      .subscribe(data => console.log(data));
+
+    this.sub = this.userService.completeTask(this.user._id, this.task._id).subscribe(data => {
+      console.log(data)
+      this.task.completed = true;
+    });
   }
 
 }

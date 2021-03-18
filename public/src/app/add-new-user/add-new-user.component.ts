@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./add-new-user.component.css']
 })
 export class AddNewUserComponent implements OnInit {
-  newuser: User = new User(' ', ' ', ' ', ' ', ' ', 0);
+  newuser: User = new User('', '', '', '', '', 0);
   sub: Subscription | undefined;
   constructor(private router: Router, private userService: UserService) { }
 

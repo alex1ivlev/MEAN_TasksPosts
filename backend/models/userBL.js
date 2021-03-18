@@ -81,19 +81,21 @@ exports.deleteUser = function (id) {
 }
 
 exports.addTask = function (id, newtask) {
+    newtask._id = undefined;
     return new Promise((resolve, reject) => {
-        user.findByIdAndUpdate(id,
-            {
-                $push: {
-                    tasks: newtask,
-                }
-            }, function (err) {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve('Task Created !')
-                }
-            })
+        user.findByIdAndUpdate(id, {
+            $push: {
+                tasks: newtask,
+            }
+        }, function (err, res)
+        {
+            if (err) {
+                reject(err);
+                return
+            }
+            resolve(res._doc.tasks[res._doc.tasks.length-1])
+        }
+    )
 
     })
 }
@@ -122,18 +124,16 @@ exports.completeTask = function (id, task_id) {
 }
 exports.addPost = function (id, newpost) {
     return new Promise((resolve, reject) => {
-        user.findByIdAndUpdate(id,
-            {
-                $push: {
-                    posts: newpost,
-                }
-            }, function (err) {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve('Post Created !')
-                }
-            })
-
+        user.findByIdAndUpdate(id, {
+            $push: {
+                posts: newpost,
+            }
+        }, function (err, res) {
+            if (err) {
+                reject(err);
+                return
+            }
+            resolve(res._doc.posts[res._doc.posts.length-1])
+        })
     })
 }

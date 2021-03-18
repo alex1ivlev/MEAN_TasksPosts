@@ -16,9 +16,13 @@ import {TaskComponent} from './task/task.component';
 import {PostComponent} from './post/post.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { AddNewTaskComponent } from './add-new-task/add-new-task.component';
+import {AddNewTaskComponent} from './add-new-task/add-new-task.component';
 import {MatDialogModule} from "@angular/material/dialog";
-
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from "@angular/material/button";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import { AddNewPostComponent } from './add-new-post/add-new-post.component';
 
 const appRoutes: Routes = [
   {
@@ -34,7 +38,7 @@ const appRoutes: Routes = [
   },
   {
     path: "adduser",
-    component:  AddNewUserComponent
+    component: AddNewUserComponent
   },
   {
     path: "search",
@@ -55,6 +59,7 @@ const appRoutes: Routes = [
     TaskComponent,
     PostComponent,
     AddNewTaskComponent,
+    AddNewPostComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +69,10 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatSidenavModule,
     MatDialogModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatCheckboxModule,
     RouterModule.forRoot(appRoutes),
   ],
   providers: [],
