@@ -16,6 +16,8 @@ import {TaskComponent} from './task/task.component';
 import {PostComponent} from './post/post.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { AddNewTaskComponent } from './add-new-task/add-new-task.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 const appRoutes: Routes = [
@@ -27,6 +29,7 @@ const appRoutes: Routes = [
         {
           path: ":id",
           component: TasksAndPostsComponent
+
         }]
   },
   {
@@ -51,6 +54,7 @@ const appRoutes: Routes = [
     OtherDataComponent,
     TaskComponent,
     PostComponent,
+    AddNewTaskComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +63,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     BrowserAnimationsModule,
     MatSidenavModule,
+    MatDialogModule,
     RouterModule.forRoot(appRoutes),
   ],
   providers: [],

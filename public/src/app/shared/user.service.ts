@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from './user';
+import {Task} from "./task";
+import {Post} from "./post";
 
 @Injectable({
   providedIn: 'root'
@@ -50,4 +52,17 @@ export class UserService {
     return allUsers;
   }
 
+  addTask(id: string, task: Task)
+  {
+    return this.http.post("http://localhost:3000/api/users/" + id + "/task", task);
+  }
+
+  addPost(id: string, post: Post)
+  {
+    return this.http.post("http://localhost:3000/api/users/" + id + "/post", post);
+  }
+
+  completeTask(id: string, task_id: string) {
+    return this.http.put("http://localhost:3000/api/users/" + id + "/task", task_id);
+  }
 }

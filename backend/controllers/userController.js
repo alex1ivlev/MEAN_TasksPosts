@@ -45,4 +45,28 @@ appRouter.route('/:id')
         return resp.json(result);
     })
 
+appRouter.route('/:id/task')
+    .post(async function(req,resp)
+    {
+        let id = req.params.id;
+        let obj = req.body;
+        let result = await userBL.addTask(id, obj);
+        return resp.json(result);
+    })
+appRouter.route('/:id/task/:task_id')
+    .put(async function(req,resp)
+    {
+        let id = req.params.id;
+        let task_id = req.params.task_id;
+        let result = await userBL.completeTask(id, task_id);
+        return resp.json(result);
+    })
+appRouter.route('/:id/post')
+    .post(async function(req,resp)
+    {
+        let id = req.params.id;
+        let obj = req.body;
+        let result = await userBL.addPost(id, obj);
+        return resp.json(result);
+    })
 module.exports = appRouter;

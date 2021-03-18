@@ -14,10 +14,10 @@
       <div class="task">
         <div class="col-xs-12 pull-right">
           <h3> Tasks: </h3>
-          <button class="pull-right btn btn-light">Add Task</button>
+          <button class="pull-right btn btn-light" (click)="addTask()">Add Task</button>
           <ul>
             <li *ngFor="let task of user.tasks">
-              <app-task [task]="task" (notify)="completeTaskStatus($event)"></app-task></li>
+              <app-task [task]="task" (click)="completeTaskStatus($event)"></app-task></li>
           </ul>
         </div>
       </div>
